@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add dive</title>
+</head>
+<body>
+  <%- include('../partials/_navbar.ejs') %>
+  <h1>Add dive </h1>
+
+  <form action="/users/<%= user._id %>/dives" method="POST">
+    <label for="location">site of diving:</label>
+    <input type="text" name="location" id="location" required />
+
+    <label for="date">date:</label>
+    <input type="date" name="date" id="date" required />
+
+    <label for="type">type of diving:</label>
+    <input type="text" name="type" id="type" required />
+
+    <label for="depth">depth of diving:</label>
+    <input type="text" name="depth" id="depth" required />
+
+    <label for="bottomTime">Bottom Time:</label>
+    <input type="text" name="bottomTime" id="bottomTime" required />
+
+    <label for="notes">notes:</label>
+    <input type="text" name="note" id="notes" />
+
+    <label for="rating">rating:</label>
+    <input type="text" name="rating" id="rating" />
+
+    <button type="submit">Add</button>
+  </form>
+
+  <a href="/users/<%= user._id %>">Back to Pantry</a>
+</body>
+</html>
