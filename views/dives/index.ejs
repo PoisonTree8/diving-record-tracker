@@ -1,12 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Pantry</title>
-  </head>
-  <body>
-    <h1>Welcome to your log book</h1>
-    <a href="/users/<%= user._id %>/dives/new">Add dive journy</a>
-  </body>
+<html>
+<head><meta charset="UTF-8"><title>My Dives</title></head>
+<body>
+  <h1>My Dive Logs</h1>
+  <p><a href="/dives/new">+ Add new dive</a></p>
+
+  <% const dives = locals.dives || []; %>
+  <% if (dives.length === 0) { %>
+    <p>No dives yet.</p>
+  <% } else { %>
+    <ul>
+      <% dives.forEach(d => { %>
+        <li>
+          <a href="/dives/<%= d._id %>">
+            <strong><%= d.location %></strong> — 
+            <%= new Date(d.date).toDateString() %> — 
+            <%= d.type %> — 
+            <%= d.depth %> m / <%= d.bottomTime %> min
+          </a>
+        </li>
+      <% }) %>
+    </ul>
+  <% } %>
+</body>
 </html>
+

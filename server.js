@@ -1,7 +1,6 @@
 const dotenv = require('dotenv');
 
 dotenv.config();
-
 const express = require('express');
 
 const app = express();
@@ -53,12 +52,10 @@ app.get('/', (req, res) => {
 });
 
 app.use('/auth', authController);
-app.use('/users/:userId/dives', divesController);
+app.use(isSignedIn);
+app.use('/dives', divesController);
 // PROTECTED
 
-app.get("/vip-lounge", isSignedIn, (req, res) => {
-    res.send(`Welcome to the party ${req.session.user.username}.`);
-});
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);

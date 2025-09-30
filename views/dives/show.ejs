@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dive Details</title>
+</head>
+<body>
+  <h1>Dive Details</h1>
+
+  <h2><%= dive.location %></h2>
+  <p><strong>Date:</strong> <%= new Date(dive.date).toDateString() %></p>
+  <p><strong>Type:</strong> <%= dive.type %></p>
+  <p><strong>Depth:</strong> <%= dive.depth %> m</p>
+  <p><strong>Bottom Time:</strong> <%= dive.bottomTime %> min</p>
+  <p><strong>Notes:</strong> <%= dive.notes || '—' %></p>
+  <p><strong>Rating:</strong> <% for (let i=0;i<dive.rating;i++){ %>⭐<% } %></p>
+
+  <hr/>
+
+  <a href="/dives"> Back to all dives</a> | 
+  <a href="/dives/<%= dive._id %>/edit"> Edit</a>
+
+  <form action="/dives/<%= dive._id %>?_method=DELETE" method="POST" style="display:inline;">
+    <button type="submit">Delete</button>
+  </form>
+</body>
+</html>
