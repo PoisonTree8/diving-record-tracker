@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta charset="UTF-8"><title>Edit Dive</title></head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Edit Dive</h1>
+
+    <form action="/dives/<%= dive._id %>?_method=PUT" method="POST">
+      <label>Location:</label>
+      <input type="text" name="location" value="<%= dive.location %>" required>
+       <label>Date:</label>
+      <input type="date" name="date" value="<%= dive.date %>" required>
+       <label>Type:</label>
+      <input type="text" name="type" value="<%= dive.type %>" required>
+       <label>Depth:</label>
+      <input type="text" name="depth" value="<%= dive.depth %>" required>
+       <label>Bottom Time:</label>
+      <input type="text" name="bottomTime" value="<%= dive.bottomTime %>" required>
+       <label>Rating:</label>
+      <input type="text" name="rating" value="<%= dive.rating %>" required>
+      
+      <button type="submit">Save</button>
+    </form>
+
+    <p><a href="/dives">Back</a></p>
+  </body>
+</html>
