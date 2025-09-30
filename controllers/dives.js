@@ -92,5 +92,23 @@ try {
   }
 });
 
+router.delete('/:diveId', async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.session.user._id);
+    const dive = currentUser.dives.id(req.params.diveId);
+    if (dive) {
+      console.log('Dive Found');
+      dive.deleteOne();
+      await currentUser.save();
+      res.redirect('/dives');
+    } else {
+      console.log('dive not found');
+      res.redirect('/dive');
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 
 module.exports = router;
