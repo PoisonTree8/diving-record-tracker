@@ -53,7 +53,6 @@ try {
 }
 });
 
-
 router.get('/:diveId/edit', async (req, res) => {
  try {
     const currentUser = await User.findById(req.session.user._id);
@@ -103,7 +102,7 @@ router.delete('/:diveId', async (req, res) => {
       res.redirect('/dives');
     } else {
       console.log('dive not found');
-      res.redirect('/dive');
+      res.redirect('/dives');
     }
   } catch (error) {
     console.log(error);

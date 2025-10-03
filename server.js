@@ -4,6 +4,7 @@ dotenv.config();
 const express = require('express');
 
 const app = express();
+app.use(express.static('public'));
 
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
@@ -14,8 +15,11 @@ const isSignedIn = require("./middleware/is-signed-in.js");
 const passUserToView = require("./middleware/pass-user-to-view.js");
 
 // Controllers
+
 const authController = require('./controllers/auth.js');
 const divesController = require('./controllers/dives.js');
+const usersController = require('./controllers/users.js');
+const User = require('./models/user.js');
 
 // Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : '3000';
@@ -51,9 +55,21 @@ app.get('/', (req, res) => {
   res.render('index.ejs');
 });
 
+app.get('/community', async (req, res) => {
+  try {
+    const users = await User.find({})
+    res.render('community.ejs', { users });
+  } catch (error) {
+    console.error(error);
+    res.render('community.ejs', { users: [] });
+  }
+});
+
 app.use('/auth', authController);
+app.use('/users', usersController);
 app.use(isSignedIn);
 app.use('/dives', divesController);
+
 // PROTECTED
 
 

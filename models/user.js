@@ -11,7 +11,7 @@ const diveSchema = new mongoose.Schema({
   },
   type: {
     type: String,
-    enum: ['scuba','free diving'],
+    enum: ['scuba diving','free diving'],
   },
 depth: {
    type: String,

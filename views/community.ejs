@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Community</title>
+</head>
+<body>
+  <%- include('./partials/_navbar.ejs') %>
+
+  <h1>Explore Our Community</h1>
+  <p>Welcome to our diving community! Here, you can discover fellow divers from around the world, 
+  browse through their logged dives, and get inspired by their underwater experiences. 
+  Whether you are a beginner or an experienced diver, this is the place to connect, 
+  share stories, and learn from others who share the same passion for the ocean.
+  </p>
+
+  <% if (!users || users.length === 0) { %>
+    <p>No users yet.</p>
+  <% } else { %>
+    <% users.forEach(u => { %>
+      <h2><%= u.username %></h2>
+
+      <% if (u.dives && u.dives.length > 0) { %>
+        <ul>
+          <% u.dives.forEach(dive => { %>
+            <li>
+              <%= dive.location %> 
+              (<%= dive.date ? new Date(dive.date).toLocaleDateString() : '' %>) |
+              <%= dive.type %>, Depth: <%= dive.depth %>m, 
+              Bottom Time: <%= dive.bottomTime %>min |
+              Rating:
+              <% for (let i = 0; i < dive.rating; i++) { %>
+                ★
+              <% } %>
+              <% for (let i = dive.rating; i < 5; i++) { %>
+                ☆
+              <% } %>
+              <% if (dive.notes) { %> - Notes: <%= dive.notes %> <% } %>
+            </li>
+          <% }) %>
+        </ul>
+      <% } else { %>
+        <p>No dives yet.</p>
+      <% } %>
+    <% }) %>
+  <% } %>
+</body>
+</html>

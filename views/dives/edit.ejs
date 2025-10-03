@@ -8,17 +8,30 @@
     <form action="/dives/<%= dive._id %>?_method=PUT" method="POST">
       <label>Location:</label>
       <input type="text" name="location" value="<%= dive.location %>" required>
-       <label>Date:</label>
+      <label>Date:</label>
       <input type="date" name="date" value="<%= dive.date %>" required>
-       <label>Type:</label>
-      <input type="text" name="type" value="<%= dive.type %>" required>
-       <label>Depth:</label>
-      <input type="text" name="depth" value="<%= dive.depth %>" required>
-       <label>Bottom Time:</label>
+      <label>Type:</label>
+      <select name="type" required>
+        <option value="free diving" <%= dive.type === 'free diving' ? 'selected' : '' %>>Free Diving</option>
+        <option value="scuba diving" <%= dive.type === 'scuba diving' ? 'selected' : '' %>>Scuba Diving</option>
+      </select>
+      <label>Depth:</label>
+      <select name="depth" required>
+        <% for (let m = 4; m <= 42; m++) { %>
+          <option value="<%= m %>" <%= String(dive.depth) === String(m) ? 'selected' : '' %>><%= m %> m</option>
+        <% } %>
+      </select>
+      <label>Bottom Time:</label>
       <input type="text" name="bottomTime" value="<%= dive.bottomTime %>" required>
-       <label>Rating:</label>
-      <input type="text" name="rating" value="<%= dive.rating %>" required>
-      
+  <label>Notes:</label>
+  <textarea name="notes" rows="4" required><%= dive.notes %></textarea>
+      <label>Rating:</label>
+      <select name="rating" required>
+        <% for (let r = 1; r <= 5; r++) { %>
+          <option value="<%= r %>" <%= String(dive.rating) === String(r) ? 'selected' : '' %>><%= '★'.repeat(r) %></option>
+        <% } %>
+      </select>
+
       <button type="submit">Save</button>
     </form>
 
