@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head><meta charset="UTF-8"><title>Edit Dive</title></head>
+<head>
+  <meta charset="UTF-8"><title>Edit Dive</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
   <body>
     <%- include('../partials/_navbar.ejs') %>
     <h1>Edit Dive</h1>
@@ -8,30 +11,38 @@
     <form action="/dives/<%= dive._id %>?_method=PUT" method="POST">
       <label>Location:</label>
       <input type="text" name="location" value="<%= dive.location %>" required>
+
       <label>Date:</label>
       <input type="date" name="date" value="<%= dive.date %>" required>
+
       <label>Type:</label>
       <select name="type" required>
         <option value="free diving" <%= dive.type === 'free diving' ? 'selected' : '' %>>Free Diving</option>
         <option value="scuba diving" <%= dive.type === 'scuba diving' ? 'selected' : '' %>>Scuba Diving</option>
       </select>
+
       <label>Depth:</label>
       <select name="depth" required>
-        <% for (let m = 4; m <= 42; m++) { %>
+        <% for (let m = 4; m <= 50; m++) { %>
           <option value="<%= m %>" <%= String(dive.depth) === String(m) ? 'selected' : '' %>><%= m %> m</option>
         <% } %>
       </select>
+
+
+
       <label>Bottom Time:</label>
       <input type="text" name="bottomTime" value="<%= dive.bottomTime %>" required>
-  <label>Notes:</label>
-  <textarea name="notes" rows="4" required><%= dive.notes %></textarea>
-      <label>Rating:</label>
+
+      <label>Notes:</label>
+      <textarea name="notes" rows="4"><%= dive.notes || '' %></textarea>
+
+
+    <label>Rating:</label>
       <select name="rating" required>
         <% for (let r = 1; r <= 5; r++) { %>
           <option value="<%= r %>" <%= String(dive.rating) === String(r) ? 'selected' : '' %>><%= '★'.repeat(r) %></option>
         <% } %>
       </select>
-
       <button type="submit">Save</button>
     </form>
 

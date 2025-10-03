@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="/styles.css">
   <%- include('../partials/_navbar.ejs') %>
   <title>Dive Details</title>
 </head>
@@ -10,12 +11,12 @@
   <h1>Dive Details</h1>
 
   <h2><%= dive.location %></h2>
-  <p><strong>Date:</strong> <%= new Date(dive.date).toDateString() %></p>
-  <p><strong>Type:</strong> <%= dive.type %></p>
-  <p><strong>Depth:</strong> <%= dive.depth %> m</p>
-  <p><strong>Bottom Time:</strong> <%= dive.bottomTime %> min</p>
-  <p><strong>Notes:</strong> <%= dive.notes || '—' %></p>
-  <p><strong>Rating:</strong> <% for (let i=0;i<dive.rating;i++){ %>⭐<% } %></p>
+  <p><strong>Date:</strong><%= new Date(dive.date).toDateString() %></p>
+  <p><strong>Type:</strong><%= dive.type %></p>
+  <p><strong>Depth:</strong><%= dive.depth %> m</p>
+  <p><strong>Bottom Time:</strong><%= dive.bottomTime %> min</p>
+  <p><strong>Notes:</strong><%= dive.notes || '—' %></p>
+  <p><strong>Rating:</strong><% for (let i=0;i<dive.rating;i++){ %>⭐<% } %></p>
 
   <hr/>
 

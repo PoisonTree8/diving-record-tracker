@@ -4,17 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home Page</title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 <% if (user) { %>
   <%- include('./partials/_navbar.ejs') %>
-<h1>Welcome, <%= user.username %>!</h1>
+
+  <div class="container">
+    <h1>Welcome, <%= user.username %>!</h1>
+    <p>
+      You are signed in to Diving Record Tracker. Here you can log new dives, view and edit your dive history, and connect with other divers in the community.
+    </p>
+    <ul>
+      <li>Log a <a href="/dives/new"> new dive </a> to keep your records up to date.</li>
+      <li>Browse your <a href="/dives/index">dive history </a> and update details as needed.</li>
+  <li>Visit the <a href="/users">Community</a> page to see other divers' experiences.</li>
+    </ul>
+  </div>
 
 <% } else { %>
-<h1>Diving Record Tracker.</h1>
-<p>
-  <a href="/auth/sign-up">Sign up</a> or <a href="/auth/sign-in">Sign in</a>.
-</p>
+  <div class="container">
+    <h1>Diving Record Tracker</h1>
+    <p>
+      Welcome to Diving Record Tracker! This app helps you log and manage your underwater adventures, track your progress, and connect with a community of fellow divers.
+    </p>
+    <ul>
+      <li>Sign up to start logging your dives and join the community.</li>
+      <li>View and edit your dive records anytime.</li>
+      <li>Explore other divers' experiences and get inspired!</li>
+    </ul>
+    <p>
+      <a href="/auth/sign-up">Sign up</a> or <a href="/auth/sign-in">Sign in</a> to get started.
+    </p>
+  </div>
 <% } %>
 
 

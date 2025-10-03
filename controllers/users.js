@@ -4,12 +4,12 @@ const User = require('../models/user.js');
 
 router.get('/', async (req, res) => {
   try {
-const allUser = await User.find({});
-res.render('users/index.ejs', {users: allUsers });            
-} catch (error) {
-console.log(error);
-res.redirect('/');
-}
+    const allUsers = await User.find({});
+    res.render('users/index.ejs', { users: allUsers });
+  } catch (error) {
+    console.log(error);
+    res.redirect('/');
+  }
 });
 
 router.get('/:userId', async (req, res) => {

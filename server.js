@@ -32,10 +32,10 @@ mongoose.connection.on('connected', () => {
 
 // MIDDLEWARE
 //
-// Middleware to parse URL-encoded data from forms
-app.use(express.urlencoded({ extended: false }));
 // Middleware for using HTTP verbs such as PUT or DELETE
 app.use(methodOverride('_method'));
+// Middleware to parse URL-encoded data from forms
+app.use(express.urlencoded({ extended: false }));
 // Morgan for logging HTTP requests
 app.use(morgan('dev'));
 app.use(
@@ -55,15 +55,7 @@ app.get('/', (req, res) => {
   res.render('index.ejs');
 });
 
-app.get('/community', async (req, res) => {
-  try {
-    const users = await User.find({})
-    res.render('community.ejs', { users });
-  } catch (error) {
-    console.error(error);
-    res.render('community.ejs', { users: [] });
-  }
-});
+
 
 app.use('/auth', authController);
 app.use('/users', usersController);

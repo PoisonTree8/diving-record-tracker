@@ -3,23 +3,54 @@
 <head>
   <meta charset="UTF-8" />
   <title>Community</title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
   <%- include('../partials/_navbar.ejs') %>
 
   <h1>Explore Our Community</h1>
+  <p>Welcome to our diving community! Here, you can discover fellow divers from around the world, 
+  browse through their logged dives, and get inspired by their underwater experiences. 
+  Whether you are a beginner or an experienced diver, this is the place to connect, 
+  share stories, and learn from others who share the same passion for the ocean.</p>
 
   <% if (!users || users.length === 0) { %>
     <p>No users yet.</p>
   <% } else { %>
+  <% users.forEach(u => { %>
+    <div class="user-dives">
+    <h2><%= u.username %></h2>
+    <% if (u.dives && u.dives.length > 0) { %>
+
     <ul>
-      <% users.forEach(u => { %>
+    <% u.dives.forEach(dive => { %>
+
         <li>
-          <a href="/users/<%= u._id %>"><%= u.username %></a>
+          <strong>Location:</strong> <%= dive.location %> |
+          <strong>Date:</strong> <%= dive.date ? new Date(dive.date).toLocaleDateString() : '' %> |
+          <strong>Type:</strong> <%= dive.type %> |
+          <strong>Depth:</strong> <%= dive.depth %>m |
+          <strong>Bottom Time:</strong> <%= dive.bottomTime %>min |
+          <strong>Rating:</strong>
+        <% for (let i = 0; i < dive.rating; i++) { %>★<% } %>
+        <% for (let i = dive.rating; i < 5; i++) { %>☆<% } %>
+        <% if (dive.notes && dive.notes.trim() !== '') { %>
+          <div>
+           <strong>Notes:</strong> <%= dive.notes %>
+          </div>
+        <% } %>
         </li>
-      <% }) %>
-    </ul>
-  <% } %>
+
+    <% }) %>
+     </ul>
+
+    <% } else { %>
+    <p>No dives yet.</p>
+    <% } %>
+
+      </div>
+    <% }) %>
+    <% } %>
 </body>
 </html>
 
