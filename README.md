@@ -17,7 +17,6 @@ Users can create an account, log their dives,  and view other divers' logs throu
 
 Technologies Used:
 - JavaScript
-- node.js
 - express.js
 - MongoDB - Mongoose
 - CSS
