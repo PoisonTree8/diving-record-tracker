@@ -1,5 +1,31 @@
 ![App Screenshot](./assets/screenshot.png)
 
+                            ERD - one to many
+                        
+         USER:
+         _____________________________________________________________________________
+        | field               type                                                    |
+        |_____________________________________________________________________________|
+        | _id                 objectId                                                |
+        | username            string          required: true                          |
+        | password            string          required: true                          |
+        | dives               [diveSchema]    embedded                                |
+        |_____________________________________________________________________________|
+
+         diveSchema:
+        _______________________________________________________________________________
+        | field               type            options                                  |
+        |______________________________________________________________________________|
+        |_id                 objectId                                                  |
+        |location            string          required: true                            |
+        | date               date            required: true                            |
+        | type               string          required: true {enum: scuba, free diving} |
+        | depth              string          required: true                            |
+        | bottomTime         srting          required: true                            |
+        | notes              string          optional                                  |
+        | rating             number          min:1 max:5 required: true                |
+        |______________________________________________________________________________|
+
 User Stoires: 
 - As a new diver, I want to create an account so I can log my dives and track my progress.
 - As a user, I want to sign in so I can access my personal dive records.
