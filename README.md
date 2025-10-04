@@ -1,4 +1,4 @@
-![App Screenshot](relative/path/to/screenshot.png)
+![App Screenshot](./assets/screenshot.png)
 
 User Stoires: 
 - As a new diver, I want to create an account so I can log my dives and track my progress.
