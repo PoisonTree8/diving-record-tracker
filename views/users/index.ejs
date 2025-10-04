@@ -26,12 +26,12 @@
     <% u.dives.forEach(dive => { %>
 
         <li>
-          <strong>Location:</strong> <%= dive.location %> |
-          <strong>Date:</strong> <%= dive.date ? new Date(dive.date).toLocaleDateString() : '' %> |
-          <strong>Type:</strong> <%= dive.type %> |
-          <strong>Depth:</strong> <%= dive.depth %>m |
-          <strong>Bottom Time:</strong> <%= dive.bottomTime %>min |
-          <strong>Rating:</strong>
+        <strong>Location:</strong> <%= dive.location %> |
+        <strong>Date:</strong> <%= dive.date ? new Date(dive.date).toLocaleDateString() : '' %> |
+        <strong>Type:</strong> <%= dive.type %> |
+        <strong>Depth:</strong> <%= dive.depth %>m |
+        <strong>Bottom Time:</strong> <%= dive.bottomTime %>min |
+        <strong>Rating:</strong>
         <% for (let i = 0; i < dive.rating; i++) { %>★<% } %>
         <% for (let i = dive.rating; i < 5; i++) { %>☆<% } %>
         <% if (dive.notes && dive.notes.trim() !== '') { %>

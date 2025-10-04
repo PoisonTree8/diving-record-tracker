@@ -76,13 +76,13 @@ try {
       console.log('dive not found');
       return res.redirect('/dives');
     } 
-    dive.location   = req.body.location;
-    dive.date       = req.body.date;
-    dive.type       = req.body.type;
-    dive.depth      = req.body.depth;
+    dive.location = req.body.location;
+    dive.date = req.body.date;
+    dive.type = req.body.type;
+    dive.depth = req.body.depth;
     dive.bottomTime = req.body.bottomTime;
-    dive.notes      = req.body.notes;
-    dive.rating     = req.body.rating;
+    dive.notes = req.body.notes;
+    dive.rating = req.body.rating;
     await currentUser.save();
     res.redirect('/dives');
   } catch (error) {
