@@ -42,7 +42,6 @@ Diving Record Tracker is a web app for logging and exploring dive records.
 Users can create an account, log their dives,  and view other divers' logs through the Community page
 
 Technologies Used:
-- JavaScript
 - express.js
 - MongoDB - Mongoose
 - CSS
